@@ -40,4 +40,4 @@ jobs:
       - name: Run Ansible Playbook
         run: |
           # Gunakan IP Private 10.0.0.5 dalam inventory.ini
-          ansible-playbook -i ansible/inventory.ini ansible/deploy_app.yml
+          ansible-playbook -i ansible/inventory.ini ansible/deploy_app.yml --limit local
