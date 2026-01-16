@@ -1,0 +1,22 @@
+---
+- name: Deploy Cloudflare Tunnel on Monitoring Server
+  hosts: monitoring
+  become: true
+  tasks:
+    - name: Pull Cloudflared Docker image
+      docker_image:
+        name: cloudflare/cloudflared
+        source: pull
+
+    - name: Remove existing tunnel container if any
+      shell: "docker rm -f cf-tunnel || true"
+
+    - name: Run Cloudflare Tunnel Container
+      shell: |
+        docker rm -f cf-tunnel || true
+        docker run -d \
+          --name cf-tunnel \
+          --network host \
+          --restart always \
+          cloudflare/cloudflared:latest \
+          tunnel --no-autoupdate run --token eyJhIjoiMzIyMmJjMjI5OTM4MDhiNGJkODUzZWQ3YjY5NTk0ODgiLCJ0IjoiMjliMzJmMWUtYjUxOS00MjFmLWI2MjEtZTkxMjQxZTNhYjFiIiwicyI6IllUZGlZbUUxTXprdE56TXdPQzAwWTJRMUxUa3lNREV0WTJSak5EY3hOemxpWmpJMSJ9

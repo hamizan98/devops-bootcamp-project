@@ -1,0 +1,59 @@
+---
+- name: Setup Node Exporter on Web Server
+  hosts: web
+  become: true
+  tasks:
+    - name: Remove old node-exporter if exists
+      shell: "docker rm -f node-exporter || true"
+
+    - name: Run Node Exporter Container
+      shell: |
+        sudo docker run -d \
+          --name node-exporter \
+          --restart always \
+          -p 9100:9100 \
+          prom/node-exporter:latest
+
+- name: Setup Monitoring Stack on Monitoring Server
+  hosts: monitoring
+  become: true
+  tasks:
+    - name: Purge conflicting packages and fix broken dependencies
+      shell: |
+        apt-get purge -y containerd.io docker.io containerd runc || true
+        apt-get autoremove -y
+        apt-get update
+
+    - name: Install Docker.io Clean
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Ensure Docker service is running
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Copy Prometheus Config to Monitoring Server
+      copy:
+        src: ./prometheus.yml
+        dest: /tmp/prometheus.yml
+
+    - name: Run Prometheus Container
+      shell: |
+        sudo docker run -d \
+          --name prometheus \
+          --restart always \
+          -p 9090:9090 \
+          -v /tmp/prometheus.yml:/etc/prometheus/prometheus.yml \
+          prom/prometheus:latest
+
+    - name: Run Grafana Container
+      shell: |
+        sudo docker run -d \
+          --name grafana \
+          --restart always \
+          -p 3000:3000 \
+          grafana/grafana:latest

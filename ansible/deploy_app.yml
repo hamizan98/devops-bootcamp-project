@@ -1,0 +1,47 @@
+---
+- name: Deploy Web Application to Web Server
+  hosts: web
+  become: true
+  tasks:
+    - name: Remove ALL conflicting Docker and Containerd packages
+      apt:
+        name:
+          - docker.io
+          - docker-doc
+          - docker-compose
+          - containerd
+          - runc
+          - containerd.io
+        state: absent
+        purge: yes
+        update_cache: yes
+
+    - name: Install Docker.io Clean
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Ensure Docker service is running
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Login to ECR on Web Server
+      shell: "aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com"
+
+    - name: Pull and Run Container
+      shell: |
+        sudo docker pull 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-hamizanaimanbinhamid:latest
+        sudo docker stop my-web-app || true
+        sudo docker rm my-web-app || true
+        sudo docker run -d --name my-web-app -p 80:80 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-hamizanaimanbinhamid:latest
+
+    - name: Force Pull Latest Image
+      shell: "sudo docker pull 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-hamizanaimanbinhamid:latest"
+
+    - name: Run New Container
+      shell: |
+        sudo docker stop my-web-app || true
+        sudo docker rm my-web-app || true
+        sudo docker run -d --name my-web-app -p 80:80 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-hamizanaimanbinhamid:latest
