@@ -1,0 +1,49 @@
+---
+- name: Install Docker on Web and Monitoring Servers
+  hosts: all
+  become: true
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu noble stable
+        state: present
+
+    - name: Install Docker Engine
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Ensure docker is started
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Remove old Docker versions
+      apt:
+        name:
+          - docker.io
+          - docker-doc
+          - docker-compose
+          - containerd
+          - runc
+        state: absent
+        update_cache: yes
