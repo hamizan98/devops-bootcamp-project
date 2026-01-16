@@ -18,8 +18,9 @@
     - name: Login to ECR on Web Server
       shell: "aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com"
 
-    - name: Pull and Run Application Container
+- name: Pull and Run Application Container
       shell: |
+        aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com
         docker pull 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-hamizanaimanbinhamid:latest
         docker stop my-web-app || true
         docker rm my-web-app || true
