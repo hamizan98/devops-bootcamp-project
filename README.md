@@ -15,3 +15,4 @@ Projek ini menunjukkan implementasi Automasi Infrastruktur (Terraform), Konfigur
 ## 4. CI/CD Pipeline
 - Menggunakan **GitHub Actions** untuk automasi deployment.
 - Dokumentasi di-host menggunakan **GitHub Pages**.
+![Uploading image.png…]()
