@@ -66,3 +66,19 @@ c) Configure Ansible inventory private IP address
 d) Use Ansible to Install Docker on all relevant servers
 -Refer install_docker.yml
 -Run ansible-playbook -I inventory.ini install docker.yml
+
+- **Build docker Image & Deploy**
+a) Clone final project lab repo and build docker image : https://github.com/Infratify/lab-final-project 
+
+b) Push to ECR
+- Run command below on Ansible controller:
+- sudo docker compose up --build -d
+- aws ecr get-login-password --region ap-southeast-1 | sudo docker login --username AWS --password-stdin 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com
+- sudo docker tag lab-final-project-final-project:latest 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-hamizanaimanbinhamid:latest
+- sudo docker push 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-hamizanaimanbinhamid:latest
+
+c) Deploy it on web server
+- run "ansible-playbook -i inventory.ini deploy_app.yml" on Ansible controller
+
+d) Verify by access the web server public IP and should get the web page 
+-<img width="911" height="987" alt="Web Server verify success" src="https://github.com/user-attachments/assets/f29d2225-db63-4f5a-ab20-0ec3d8628595" />
