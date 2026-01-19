@@ -129,3 +129,25 @@ aws ssm start-session --target i-0ce12ba3ab2c7a3e8 \
 --document-name AWS-StartPortForwardingSession \
 --parameters '{"portNumber":["9090"],"localPortNumber":["9090"]}'
 <img width="766" height="187" alt="image" src="https://github.com/user-attachments/assets/be20541e-4e07-41e0-aed1-4b38ffce3aee" />
+
+- **Domain & Cloudflare Configuration**
+a) Configure Cloudflare DNS. Point web.jangaiman.com to point the Web Server Elastic IP (52.220.121.68)
+<img width="1869" height="1025" alt="image" src="https://github.com/user-attachments/assets/04d2d554-7fdc-49be-bd31-a663589ea815" />
+
+b) Set Cloudflare SSL mode to Flexible
+<img width="1814" height="766" alt="image" src="https://github.com/user-attachments/assets/94e2a526-697f-47a6-b27a-7a35093386a5" />
+
+c) Create a Cloudflare Tunnel:
+-Expose Grafana securely via monitoring.yourdomain.com & ensure no public access
+<img width="1888" height="756" alt="image" src="https://github.com/user-attachments/assets/cb9d5dc9-47a2-4d22-a0cb-e05cd36f9c7f" />
+
+d) Verify Web application accessible via domain
+<img width="940" height="981" alt="image" src="https://github.com/user-attachments/assets/b8642539-7282-4ba0-8864-ad7c8c832d77" />
+
+e) Grafana accessible only via Cloudflare Tunnel
+<img width="1897" height="936" alt="image" src="https://github.com/user-attachments/assets/382c9c70-71b8-4afb-8595-f2f377003ce8" />
+
+
+
+
+
