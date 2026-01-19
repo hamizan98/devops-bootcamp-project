@@ -6,7 +6,6 @@ Projek ini menunjukkan implementasi Automasi Infrastruktur (Terraform), Applicat
 ## 2. Infrastructure Architecture (Final URLs)
 - **Web Application URLs**: Host aplikasi di `https://web.jangaiman.com`
 - **Monitoring Server**: Host Prometheus & Grafana di `https://monitoring.jangaiman.com`
-- **Domain & Cloudflare Configuration**: Monitoring server tidak mempunyai akses awam (No Public IP Access) dan dilindungi oleh Cloudflare Tunnel dan Configuration IP Public Web Server point to web.jangaiman.com
 - **GitHub repository URL**: https://github.com/hamizan98/devops-bootcamp-project
 
 ## 3.Preparation & Prerequisites of this Devops Bootcamp Project
@@ -131,6 +130,7 @@ aws ssm start-session --target i-0ce12ba3ab2c7a3e8 \
 <img width="766" height="187" alt="image" src="https://github.com/user-attachments/assets/be20541e-4e07-41e0-aed1-4b38ffce3aee" />
 
 - **Domain & Cloudflare Configuration**
+-Monitoring server tidak mempunyai akses awam (No Public IP Access) dan dilindungi oleh Cloudflare Tunnel dan Configuration IP Public Web Server point to web.jangaiman.com
 a) Configure Cloudflare DNS. Point web.jangaiman.com to point the Web Server Elastic IP (52.220.121.68)
 <img width="1869" height="1025" alt="image" src="https://github.com/user-attachments/assets/04d2d554-7fdc-49be-bd31-a663589ea815" />
 
