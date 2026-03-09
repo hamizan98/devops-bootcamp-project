@@ -8,6 +8,9 @@ Projek ini menunjukkan implementasi Automasi Infrastruktur (Terraform), Applicat
 - **Monitoring Server**: Host Prometheus & Grafana di `https://monitoring.jangaiman.com`
 - **GitHub repository URL**: https://github.com/hamizan98/devops-bootcamp-project
 
+## 🖼️ Architecture Diagram
+<img width="938" height="785" alt="Architecture Diagram" src="https://github.com/user-attachments/assets/5d6163ef-8ef9-46e3-a143-f10f20636826" />
+
 ## 3.Preparation & Prerequisites of this Devops Bootcamp Project
 - Have active AWS account, registered domain name added to Cloudflare and GitHub account.
 - Got local tools such as Terraform, AWS CLI and Git
