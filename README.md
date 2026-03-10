@@ -1,9 +1,9 @@
 # DevOps Bootcamp Final Project
 
-## 1. Project Overview
-Projek ini menunjukkan implementasi Automasi Infrastruktur (Terraform), Application & Configuration Management (Ansible), dan Domain & Cloudflare Configuration (Cloudflare).
+## 1. 📌Project Overview
+This project demonstrates a complete End-to-End DevOps Lifecycle, automating the transition from raw infrastructure to a monitored, production-ready application. It integrates industry-standard tools to create a seamless "Push-to-Deploy" experience.
 
-## 2. Infrastructure Architecture (Final URLs)
+## 2. 🚀Infrastructure Architecture (Final URLs)
 - **Web Application URLs**: Host aplikasi di `https://web.jangaiman.com`
 - **Monitoring Server**: Host Prometheus & Grafana di `https://monitoring.jangaiman.com`
 - **GitHub repository URL**: https://github.com/hamizan98/devops-bootcamp-project
@@ -11,13 +11,22 @@ Projek ini menunjukkan implementasi Automasi Infrastruktur (Terraform), Applicat
 ## 🖼️ Architecture Diagram
 <img width="938" height="785" alt="Architecture Diagram" src="https://github.com/user-attachments/assets/5d6163ef-8ef9-46e3-a143-f10f20636826" />
 
-## 3.Preparation & Prerequisites of this Devops Bootcamp Project
+## 🧩 Core Integrated Technologies
+ - **Infrastructure as Code (IaC)**: Terraform provisions a custom AWS VPC, including public subnets, an Internet Gateway, and EC2 instances for the Web and Monitoring layers.
+
+ - **Configuration Management**: Ansible automates the environment setup, ensuring consistent installation of Docker, security hardening, and service configurations across all nodes.
+   
+ - **Secure Connectivity**: Cloudflare Tunnels are utilized to expose the Monitoring stack (Grafana) to the internet without opening inbound firewall ports, significantly reducing the attack surface.
+
+ - **Observability**: A Prometheus and Grafana stack provides real-time visibility into system metrics (CPU, Memory, Disk) using Node Exporter.
+
+## 3. 📤Preparation & Prerequisites of this Devops Bootcamp Project
 - Have active AWS account, registered domain name added to Cloudflare and GitHub account.
 - Got local tools such as Terraform, AWS CLI and Git
 
-## 4. Step-by-step guide
+## 4. 🏗️Step-by-step guide
 - **Terraform – Infrastructure Provisioning**
-a) Create an Amazon S3 bucket to store the Terraform state file at AWS Console:
+  a) Create an Amazon S3 bucket to store the Terraform state file at AWS Console:
 -Bucket Name: devops-bootcamp-terraform-hamizanaimanbinhamid
 -Region: ap-southeast-1
 
