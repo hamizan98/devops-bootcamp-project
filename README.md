@@ -79,7 +79,7 @@ terraform apply -auto-approve
 ### ⚙️2.1 Configure for access Ansible Controller via SSM
 - Refer iam.tf. This code able Ansible Controller, Web Server, & Monitoring Server access via SSM
 
-###⚙️2.2 Install Ansible at Ansible Controller
+### ⚙️2.2 Install Ansible at Ansible Controller
 -  **Execte command below:**
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -93,20 +93,20 @@ pipx ensurepath
 ansible --version
 ```
 
-###⚙️2.3 Configure Ansible inventory private IP address
+### ⚙️2.3 Configure Ansible inventory private IP address
 - Refer inventory.ini
 
-###⚙️2.4 Use Ansible to Install Docker on all relevant servers
+### ⚙️2.4 Use Ansible to Install Docker on all relevant servers
 - Refer install_docker.yml
 
 ```bash
 Run ansible-playbook -I inventory.ini install docker.yml
 ```
 
-###⚙️2.5 Build docker Image & Deploy
+### ⚙️2.5 Build docker Image & Deploy
 - Clone final project lab repo and build docker image : **https://github.com/Infratify/lab-final-project**
 
-###⚙️2.6 Push to ECR
+### ⚙️2.6 Push to ECR
 - **Run command below on Ansible controller:**
   ```bash
   sudo docker compose up --build -d
@@ -115,13 +115,13 @@ Run ansible-playbook -I inventory.ini install docker.yml
   sudo docker push 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-hamizanaimanbinhamid:latest
   ```
   
-###⚙️2.7 Deploy it on web server
+### ⚙️2.7 Deploy it on web server
 - **Run command as below on Ansible controller**
 ```bash
 ansible-playbook -i inventory.ini deploy_app.yml 
 ```
 
-###⚙️2.8 Verify by access the web server public IP and should get the web page 
+### ⚙️2.8 Verify by access the web server public IP and should get the web page 
 <img width="911" height="987" alt="Web Server verify success" src="https://github.com/user-attachments/assets/f29d2225-db63-4f5a-ab20-0ec3d8628595" />
 
 ## 🖥️3. Monitoring & Observability
