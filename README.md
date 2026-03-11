@@ -135,23 +135,23 @@ ansible-playbook -i inventory.ini deploy_monitoring.yml
 
 ### 📊3.2 Configure Grafana dashboards to visualize the metrics from Prometheus & Configure the Prometheus to collect data from the web server resources such as CPU usage, RAM usage and DISK usage.
 
-#### 📥3.2.1 Access Grafana: open http://localhost:3000 (Login: admin / admin)
+### 📥3.2.1 Access Grafana: open http://localhost:3000 (Login: admin / admin)
 <img width="1296" height="768" alt="Grafana verify" src="https://github.com/user-attachments/assets/d0af2cd2-23dd-4131-b081-69944fda427b" />
 
-#### 📥3.2.1 Add Data Source:
+### 📥3.2.1 Add Data Source:
 
 - Click Add your first data source.
 - Choose Prometheus.
 - Insert URL: http://10.0.0.136:9090 (Use IP Private Monitoring Server).
 - Click Save & Test.
   
-#### 📥3.2.2 Import Dashboard:
+### 📥3.2.2 Import Dashboard:
 
 - Click icon + (New) > Import.
 - Key in ID: 1860 (Official Dashbord for Node Exporter that include CPU, RAM, and Disk).
 - Click Load, choose data source Prometheus, dan click Import.
 
-#### 📥3.2.3 Verify metrics are updating in real time.
+### 📥3.2.3 Verify metrics are updating in real time.
 
 - Open Prometheus at http://localhost:9090.
 - Go to Status > Targets.
@@ -162,7 +162,7 @@ ansible-playbook -i inventory.ini deploy_monitoring.yml
 - Go to Dashboards > Node Exporter Full
 <img width="1894" height="907" alt="image" src="https://github.com/user-attachments/assets/8628ccfc-2682-438b-a05d-a7cbfd8f10ae" />
 
-#### 📥3.2.4 Use AWS SSM Port Forwarding
+### 📥3.2.4 Use AWS SSM Port Forwarding
 - Use AWS SSM Port Forwarding to access Prometheus & Grafana using http://localhost:9090 & http://localhost:3000 respectively.
 - **Run command below at laptop terminal Linux**
 
