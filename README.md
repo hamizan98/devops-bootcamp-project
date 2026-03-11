@@ -38,29 +38,29 @@ This project demonstrates a complete End-to-End DevOps Lifecycle, automating the
 ## 🛠️1. Terraform – Infrastructure Provisioning
 
 ### 🛠️1.1 Create an Amazon S3 bucket to store the Terraform state file at AWS Console:
--Bucket Name: devops-bootcamp-terraform-hamizanaimanbinhamid
--Region: ap-southeast-1
+- Bucket Name: devops-bootcamp-terraform-hamizanaimanbinhamid
+- Region: ap-southeast-1
 
 ### 🛠️1.2 Configure Terraform backend to use the S3 bucket
--Refer backend.tf
+- Refer backend.tf
 
 ### 🛠️1.3 Provision networking resources:
--VPC : Refer main.tf
--Public and private subnets: Refer main.tf
--Route tables: Refer main.tf
--Internet Gateway: Refer main.tf
--NAT Gateway: Refer main.tf
+- VPC : Refer main.tf
+- Public and private subnets: Refer main.tf
+- Route tables: Refer main.tf
+- Internet Gateway: Refer main.tf
+- NAT Gateway: Refer main.tf
 
 ### 🛠️1.4 Create required security groups.
--Refer security.tf 
+- Refer security.tf 
 
 ### 🛠️1.5 Provision EC2 instances:
--Web Server (public subnet + Elastic IP): Refer instances.tf
--Ansible Controller (private subnet): Refer instances.tf
--Monitoring Server (private subnet): Refer instances.tf
+- Web Server (public subnet + Elastic IP): Refer instances.tf
+- Ansible Controller (private subnet): Refer instances.tf
+- Monitoring Server (private subnet): Refer instances.tf
 
 ### 🛠️1.6 Enable AWS Systems Manager (SSM) access on all servers.
--Refer iam.tf
+- Refer iam.tf
 
 ### 🛠️1.7 Create an ECR repository.
 - Refer ecr.tf
