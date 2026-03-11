@@ -15,6 +15,8 @@ This project demonstrates a complete End-to-End DevOps Lifecycle, automating the
  - **Infrastructure as Code (IaC)**: Terraform provisions a custom AWS VPC, including public subnets, an Internet Gateway, and EC2 instances for the Web and Monitoring layers.
 
  - **Configuration Management**: Ansible automates the environment setup, ensuring consistent installation of Docker, security hardening, and service configurations across all nodes.
+
+ - **CI/CD Pipeline**: GitHub Actions handles the build-and-deploy logic. It builds Docker images, pushes them to Amazon ECR, and triggers remote deployment via AWS Systems Manager (SSM).
    
  - **Secure Connectivity**: Cloudflare Tunnels are utilized to expose the Monitoring stack (Grafana) to the internet without opening inbound firewall ports, significantly reducing the attack surface.
 
@@ -26,7 +28,7 @@ This project demonstrates a complete End-to-End DevOps Lifecycle, automating the
 
 ## 4. 🏗️Step-by-step guide
 - **Terraform – Infrastructure Provisioning**
-  a) Create an Amazon S3 bucket to store the Terraform state file at AWS Console:
+- a) Create an Amazon S3 bucket to store the Terraform state file at AWS Console:
 -Bucket Name: devops-bootcamp-terraform-hamizanaimanbinhamid
 -Region: ap-southeast-1
 
