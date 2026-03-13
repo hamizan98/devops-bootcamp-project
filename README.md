@@ -116,9 +116,9 @@ ansible monitoring -m ping -i inventory.ini
 
 ### ⚙️2.4 Use Ansible to Install Docker on all relevant servers
 - Refer install_docker.yml
-
+- Run command as below:
 ```bash
-Run ansible-playbook -I inventory.ini install docker.yml
+ansible-playbook -I inventory.ini install docker.yml
 ```
 
 ### ⚙️2.5 Build docker Image & Deploy
