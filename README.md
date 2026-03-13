@@ -96,6 +96,24 @@ ansible --version
 ### ⚙️2.3 Configure Ansible inventory private IP address
 - Refer inventory.ini
 
+### ⚙️2.3.1 Step to enable remote SSH from Ansible controller to Monitoring & Web Server
+- Generate SSH key at ansible controller using this command as below:
+```bash
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
+```
+- Copy SSH key from this executed command:
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+- Paste Ansible Controller SSH key to both Monitoring & Web Server:
+```bash
+sudo nano /home/ubuntu/.ssh/authorized_keys
+```
+- Test ping from Ansible Controller to both Monitoring & Web Server
+```bash
+ansible monitoring -m ping -i inventory.ini
+```
+
 ### ⚙️2.4 Use Ansible to Install Docker on all relevant servers
 - Refer install_docker.yml
 
