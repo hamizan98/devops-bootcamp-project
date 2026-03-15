@@ -125,15 +125,28 @@ ansible-playbook -I inventory.ini install docker.yml
 - Clone final project lab repo and build docker image : **https://github.com/Infratify/lab-final-project**
 
 ### ⚙️2.6 Push to ECR
+- **Install docker on Ansible Controller**
+  ```bash
+  sudo apt update
+  sudo apt install docker.io
+  sudo apt install docker-compose-v2 -y
+  ```
 - **Run command below on Ansible controller:**
   ```bash
-  sudo docker compose up --build -d
+  sudo docker build -t lab-final-project-final-project:latest .
   aws ecr get-login-password --region ap-southeast-1 | sudo docker login --username AWS --password-stdin 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com
   sudo docker tag lab-final-project-final-project:latest 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-hamizanaimanbinhamid:latest
   sudo docker push 147845229479.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/final-project-hamizanaimanbinhamid:latest
   ```
   
 ### ⚙️2.7 Deploy it on web server
+- **Install AWS CLI first on all relevant server**
+  ```bash
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  sudo apt install unzip
+  unzip awscliv2.zip
+  sudo ./aws/install
+  ```
 - **Run command as below on Ansible controller**
 ```bash
 ansible-playbook -i inventory.ini deploy_app.yml 
