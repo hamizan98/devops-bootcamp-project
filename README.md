@@ -217,7 +217,7 @@ aws ssm start-session --target <INSTANCE_ID_MONITORING_SERVER> \
 - Monitoring server not have cloud access (No Public IP Access) and protect by Cloudflare Tunnel and Configuration Public IP Web Server point to web.jangaiman.com
 
 ### ☁️4.1 Configure Cloudflare DNS. Point web.jangaiman.com to point the Web Server Elastic IP (52.220.121.68)
-<img width="1869" height="1025" alt="image" src="https://github.com/user-attachments/assets/04d2d554-7fdc-49be-bd31-a663589ea815" />
+<img width="1024" height="354" alt="image" src="https://github.com/user-attachments/assets/4a8248bf-b80c-4a86-956c-737e668923e7" />
 
 ### ☁️4.2 Set Cloudflare SSL mode to Flexible
 <img width="1814" height="766" alt="image" src="https://github.com/user-attachments/assets/94e2a526-697f-47a6-b27a-7a35093386a5" />
