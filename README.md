@@ -225,26 +225,26 @@ aws ssm start-session --target <INSTANCE_ID_MONITORING_SERVER> \
 ### ☁️4.3 Create a Cloudflare Tunnel:
 **Expose Grafana securely via monitoring.yourdomain.com & ensure no public access**
 
--The monitoring playbook requires a Cloudflare Tunnel token so it can authenticate and start the secure tunnel container. This token must be supplied manually when you run the playbook.
+The monitoring playbook requires a **Cloudflare Tunnel token** so it can authenticate and start the secure tunnel container. This token must be supplied manually when run the playbook.
 
--Get Your Cloudflare Tunnel Token
+**Get Cloudflare Tunnel Token**
 
-- **Can obtain the token from Cloudflare dashboard:**
-- Log in to **Cloudflare**
-- Go to **Zero Trust**
-- Select **Networks** → **Connectors** → **Cloudflare Tunnels**
-- Select **Add a Tunnel** → **Cloudflared** → Tunnel Name : **monitoring** → Save Tunnel
-- Select Docker → Copy the --token cloudflare (keep this aside for later) → Next
 
->**Note**: *The 'deploy_tunnel.yml' playbook is already "pre-programmed" with the Cloudflare docker image and the exact settings needed to run. Because these technical details are already built into the file, only job is to only copy the Token*
+You can obtain the token from your Cloudflare dashboard:
 
-- Route Traffic → Published applications
+ - Log in to **Cloudflare**
+ - Go to **Zero Trust**
+ - Select **Networks** → **Connectors** → **Cloudflare Tunnels**
+ - Select **Add a Tunnel** → **Cloudflared** → **Tunnel Name : `monitoring`** → **Save Tunnel**
+ - Select **Docker** → Copy the `--token cloudflare` (keep this aside for later) → **Next** 
+> **Note:** *The `deploy_tunnel.yml` playbook is already "pre-programmed" with the Cloudflare docker image and the exact settings needed to run. Because these technical details are already built into the file, only job is to only copy the Token*
+ - Route Traffic → **Published applications**
 
- - Hostname :
-  - **Subdomain** : monitoring , Domain : yourdomain.com
- - Service :
-  - **Type** : 'HTTP' , **URL** : 'localhost : 3000'
-- Click **Complete Setup**
+    - Hostname : 
+      - **Subdomain** : `monitoring` , **Domain** : `yourdomain.com`
+    - Service : 
+      - **Type** : `HTTP` , **URL** : `localhost : 3000`
+ - Click **Complete Setup**
 
 **Deploy the tunnel on Monitoring Server With the Token
 - Run command below on Ansible Controller 
