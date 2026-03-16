@@ -216,11 +216,6 @@ aws ssm start-session --target <INSTANCE_ID_MONITORING_SERVER> \
 ## ☁️4. Domain & Cloudflare Configuration
 
 ### ☁️4.1 Monitoring server not have cloud access (No Public IP Access) and protect by Cloudflare Tunnel and Configuration Public IP Web Server point to web.jangaiman.com
-- Deploy tunnel on Monitoring Server.
-- Run command below on Monitoring Server
-```bash
-ansible-playbook -i inventory.ini deploy_tunnel.yml
-```
 
 ### ☁️4.2 Configure Cloudflare DNS. Point web.jangaiman.com to point the Web Server Elastic IP (52.220.121.68)
 <img width="1869" height="1025" alt="image" src="https://github.com/user-attachments/assets/04d2d554-7fdc-49be-bd31-a663589ea815" />
@@ -230,6 +225,11 @@ ansible-playbook -i inventory.ini deploy_tunnel.yml
 
 ### ☁️4.4 Create a Cloudflare Tunnel:
 **Expose Grafana securely via monitoring.yourdomain.com & ensure no public access**
+- Deploy tunnel on Monitoring Server.
+- Run command below on Monitoring Server
+```bash
+ansible-playbook -i inventory.ini deploy_tunnel.yml
+```
 <img width="1888" height="756" alt="image" src="https://github.com/user-attachments/assets/cb9d5dc9-47a2-4d22-a0cb-e05cd36f9c7f" />
 
 ### ☁️4.5 Verify Web application accessible via domain
