@@ -202,13 +202,13 @@ ansible-playbook -i inventory.ini deploy_monitoring.yml
 - **Run command below at laptop terminal Linux**
 
 (Terminal 1 For Grafana)
-aws ssm start-session --target i-0ce12ba3ab2c7a3e8 \
+aws ssm start-session --target <INSTANCE_ID_MONITORING_SERVER> \
 --document-name AWS-StartPortForwardingSession \
 --parameters '{"portNumber":["3000"],"localPortNumber":["3000"]}'
 <img width="781" height="190" alt="image" src="https://github.com/user-attachments/assets/21a2b543-1130-4d06-be7f-dc7a899f8f05" />
 
 (Terminal 2 For Prometheus)
-aws ssm start-session --target i-0ce12ba3ab2c7a3e8 \
+aws ssm start-session --target <INSTANCE_ID_MONITORING_SERVER> \
 --document-name AWS-StartPortForwardingSession \
 --parameters '{"portNumber":["9090"],"localPortNumber":["9090"]}'
 <img width="766" height="187" alt="image" src="https://github.com/user-attachments/assets/be20541e-4e07-41e0-aed1-4b38ffce3aee" />
