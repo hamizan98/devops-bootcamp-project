@@ -213,20 +213,41 @@ aws ssm start-session --target <INSTANCE_ID_MONITORING_SERVER> \
 --parameters '{"portNumber":["9090"],"localPortNumber":["9090"]}'
 <img width="766" height="187" alt="image" src="https://github.com/user-attachments/assets/be20541e-4e07-41e0-aed1-4b38ffce3aee" />
 
-## ☁️4. Domain & Cloudflare Configuration
+## ☁️4.0 Domain & Cloudflare Configuration
+- Monitoring server not have cloud access (No Public IP Access) and protect by Cloudflare Tunnel and Configuration Public IP Web Server point to web.jangaiman.com
 
-### ☁️4.1 Monitoring server not have cloud access (No Public IP Access) and protect by Cloudflare Tunnel and Configuration Public IP Web Server point to web.jangaiman.com
-
-### ☁️4.2 Configure Cloudflare DNS. Point web.jangaiman.com to point the Web Server Elastic IP (52.220.121.68)
+### ☁️4.1 Configure Cloudflare DNS. Point web.jangaiman.com to point the Web Server Elastic IP (52.220.121.68)
 <img width="1869" height="1025" alt="image" src="https://github.com/user-attachments/assets/04d2d554-7fdc-49be-bd31-a663589ea815" />
 
-### ☁️4.3 Set Cloudflare SSL mode to Flexible
+### ☁️4.2 Set Cloudflare SSL mode to Flexible
 <img width="1814" height="766" alt="image" src="https://github.com/user-attachments/assets/94e2a526-697f-47a6-b27a-7a35093386a5" />
 
-### ☁️4.4 Create a Cloudflare Tunnel:
+### ☁️4.3 Create a Cloudflare Tunnel:
 **Expose Grafana securely via monitoring.yourdomain.com & ensure no public access**
-- Deploy tunnel on Monitoring Server.
-- Run command below on Monitoring Server
+
+-The monitoring playbook requires a Cloudflare Tunnel token so it can authenticate and start the secure tunnel container. This token must be supplied manually when you run the playbook.
+
+-Get Your Cloudflare Tunnel Token
+
+- **Can obtain the token from Cloudflare dashboard:**
+- Log in to **Cloudflare**
+- Go to **Zero Trust**
+- Select **Networks** → **Connectors** → **Cloudflare Tunnels**
+- Select **Add a Tunnel** → **Cloudflared** → Tunnel Name : **monitoring** → Save Tunnel
+- Select Docker → Copy the --token cloudflare (keep this aside for later) → Next
+
+>**Note**: *The 'deploy_tunnel.yml' playbook is already "pre-programmed" with the Cloudflare docker image and the exact settings needed to run. Because these technical details are already built into the file, only job is to only copy the Token*
+
+- Route Traffic → Published applications
+
+ - Hostname :
+  - **Subdomain** : monitoring , Domain : yourdomain.com
+ - Service :
+  - **Type** : 'HTTP' , **URL** : 'localhost : 3000'
+- Click **Complete Setup**
+
+**Deploy the tunnel on Monitoring Server With the Token
+- Run command below on Ansible Controller 
 ```bash
 ansible-playbook -i inventory.ini deploy_tunnel.yml
 ```
