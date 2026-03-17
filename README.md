@@ -122,11 +122,15 @@ ansible-playbook -I inventory.ini install docker.yml
 ```
 
 ### ⚙️2.5 Build docker Image & Deploy
-- Clone final project lab repo and build docker image : **https://github.com/Infratify/lab-final-project**
 - Find files that have text Devops Engineer then change "Devops Engineer to name Hamizan Aiman"
   ```bash
   grep -r "DevOps Engineer"
   ```
+- Initial install on ansible controller for testing
+```bash
+docker compose up -d --build
+```
+- Make sure install docker first on Ansible Controller
 
 ### ⚙️2.6 Push to ECR
 - ** Install docker on Ansible Controller**
